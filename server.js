@@ -35,7 +35,7 @@ var corsOption = {
 const app = express();
 
 app.use (express.json());//parse the post input from frontend
-app.use(cors({origin: 'http://localhost:3001/smart-brain'}));
+app.use(cors({origin: 'http://localhost:3001'}));
 
 app.get('/', (req,res)=>{
 	res.json("page Loaded")
