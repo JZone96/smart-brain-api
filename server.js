@@ -24,7 +24,7 @@ const db = knex({
 });
 
 var corsOption = {
-	origin: 'http://localhost:3001/',
+	origin: 'http://localhost:3001/smart-brain',
 	optionsSuccessStatus : 200
 }
 
@@ -43,7 +43,7 @@ app.get('/', (req,res)=>{
 
 app.post ('/signin', (req,res)=> {signin.handleSignin(req, res, db, bcrypt)});
 
-app.post ('/register', cors(corsOption), (req,res) => {register.handleRegister(req, res, db, bcrypt)});//dependencies injection
+app.post ('/register', (req,res) => {register.handleRegister(req, res, db, bcrypt)});//dependencies injection
 
 app.get ('/profile/:id', (req,res) => {profile.handleProfileGet(req,res,db)});
 
