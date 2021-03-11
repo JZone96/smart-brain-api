@@ -43,7 +43,7 @@ app.get('/', (req,res)=>{
 
 app.post ('/signin', (req,res)=> {signin.handleSignin(req, res, db, bcrypt)});
 
-app.post ('/register', (req,res) => {register.handleRegister(req, res, db, bcrypt)});//dependencies injection
+app.post ('/register', cors(corsOption), (req,res) => {register.handleRegister(req, res, db, bcrypt)});//dependencies injection
 
 app.get ('/profile/:id', (req,res) => {profile.handleProfileGet(req,res,db)});
 
