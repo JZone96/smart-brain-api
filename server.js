@@ -23,6 +23,11 @@ const db = knex({
   }
 });
 
+var corsOption = {
+	origin: 'http://localhost:3001/',
+	optionsSuccessStatus : 200
+}
+
 //(console.log(db.select('*').from('users'));//logs the builder object, integrarted in knex, that contains the query
 //RETURNS A PROMISE. USE .THEN, NO NEED FOR JSON()
 
@@ -38,7 +43,7 @@ app.get('/', (req,res)=>{
 
 app.post ('/signin', (req,res)=> {signin.handleSignin(req, res, db, bcrypt)});
 
-app.post ('/register', (req,res) => {register.handleRegister(req, res, db, bcrypt)});//dependencies injection
+app.post ('/register', cors(corsOption), (req,res) => {register.handleRegister(req, res, db, bcrypt)});//dependencies injection
 
 app.get ('/profile/:id', (req,res) => {profile.handleProfileGet(req,res,db)});
 
